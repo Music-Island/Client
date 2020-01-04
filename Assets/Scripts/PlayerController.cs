@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 
 
-public class player_control : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     //private float speed = 3f;//移动速度
     //private float vspeed = 0;//垂直方向的速度
@@ -68,31 +68,31 @@ public class player_control : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("扣血");
-        if ( other.tag=="Fire" )
+        if (other.tag == "Fire")
         {
             // Debug.Log("扣血");
             //GameController.instance.Now_hurt();
             damaged = true;
             GameController.instance.UpdataAndDisplayHp(-1);
         }
-        else if ( other.tag=="Food" )
+        else if (other.tag == "Food")
         {
-          //  Debug.Log("吃到了苹果");
+            //  Debug.Log("吃到了苹果");
             GameController.instance.UpdataAndDisplaySc(10);
         }
-        else if ( other.tag=="Enemy" )
+        else if (other.tag == "Enemy")
         {
-            if ( atking==false && sp_atking==false )
+            if (atking == false && sp_atking == false)
             {
-               // GameController.instance.Now_hurt();
+                // GameController.instance.Now_hurt();
                 damaged = true;
                 GameController.instance.UpdataAndDisplayHp(-1);
             }
 
         }
-        else if ( other.tag=="Goods" )
+        else if (other.tag == "Goods")
         {
-            if ( atking || sp_atking )
+            if (atking || sp_atking)
             {
                 GameController.instance.UpdataAndDisplaySc(10);
             }
@@ -111,7 +111,7 @@ public class player_control : MonoBehaviour
     {
         Vector2 lowPosition = new Vector2(default_x, lowPosition_y);
         Vector2 highPosition = new Vector2(default_x, highPosition_y);
-       
+
         //Vector2 position = rbody.position;
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -124,7 +124,7 @@ public class player_control : MonoBehaviour
             rbody.MovePosition(highPosition);
             floatingTimer = floatingTime;
         }
-        if ( Input.GetKeyDown(KeyCode.J))//&& can_atk == true
+        if (Input.GetKeyDown(KeyCode.J))//&& can_atk == true
         {
             //can_atk = false;
             atking = true;
@@ -156,10 +156,10 @@ public class player_control : MonoBehaviour
 
         if (atklast == 0)
         {
-            can_atk = true;
+            //can_atk = true;
             atking = false;
         }
-        if ( downlast==0 )
+        if (downlast == 0)
         {
             down = false;
 
@@ -168,7 +168,7 @@ public class player_control : MonoBehaviour
             atklast--;
         if (downlast > 0)
             downlast--;
-        if (Mathf.Abs(position.y - lowPosition_y) <=0.000001f)
+        if (Mathf.Abs(position.y - lowPosition_y) <= 0.000001f)
             jump = false;//可以跳跃
         else if (down == false)
         {
@@ -181,7 +181,7 @@ public class player_control : MonoBehaviour
             kind = 1;
         if (down == true)
             kind = 3;
-        if ( Mathf.Abs(position.y-highPosition_y)<= 0.000001f && kind==3 )
+        if (Mathf.Abs(position.y - highPosition_y) <= 0.000001f && kind == 3)
         {
             if (atking)
                 kind = 1;
@@ -223,7 +223,7 @@ public class player_control : MonoBehaviour
                 jump = false;
                 down = false;
                 //rbody.MovePosition(lowPosition);
-                
+
             }
         }
 
@@ -233,7 +233,7 @@ public class player_control : MonoBehaviour
         //if (position.y <= -2.0f)
         //    position.y = -2.0f;
         //rbody.MovePosition(position);
-        if ( damaged )
+        if (damaged)
         {
             sprite.color = flashColour;
         }
@@ -243,7 +243,7 @@ public class player_control : MonoBehaviour
             sprite.color = Write;
         }
         damaged = false;
-        
+
 
     }
 }
