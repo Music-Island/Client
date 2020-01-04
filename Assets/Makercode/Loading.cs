@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 public class Loading : MonoBehaviour
 {
-    GameObject obj, prefab1, prefab2, prefab3;
+    public GameObject obj, prefab1, prefab2, prefab3;
     // Start is called before the first frame update
     void Start()
     {
-        prefab1 = GameObject.Find("New Sprite (1)");
-        prefab2 = GameObject.Find("New Sprite (2)");
-        prefab3 = GameObject.Find("Enemy");
     }
 
     // Update is called once per frame
@@ -20,7 +18,8 @@ public class Loading : MonoBehaviour
     }
     public void Button()
     {
-        StreamReader F = new StreamReader("E:\\github\\Client\\names.txt");
+        Text names = GameObject.Find("AudioPanel").GetComponent<AudioPlayer>().audioName;
+        StreamReader F = new StreamReader("E:\\github\\Client\\" + names.text + ".txt");
         string str = F.ReadLine();
         while(str != null)
         {

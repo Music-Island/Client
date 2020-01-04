@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 
 public class End : MonoBehaviour
@@ -20,18 +21,17 @@ public class End : MonoBehaviour
     }
     public void Button()
     {
-        StreamWriter F = new StreamWriter("names.txt");
-        sno1 = GameObject.FindGameObjectsWithTag("Block");
+        Text names = GameObject.Find("AudioPanel").GetComponent<AudioPlayer>().audioName;
+        StreamWriter F = new StreamWriter(names.text + ".txt");
+        sno1 = GameObject.FindGameObjectsWithTag("Fire");
         foreach(GameObject item in sno1)
         {
             int type = -1;
-            if (item.name == "New Sprite (1)(Clone)") type = 1;
-            else if (item.name == "New Sprite (2)(Clone)") type = 2;
-            else if (item.name == "Enemy(Clone)") type = 3;
+            if (item.name == "Roadblock(Clone)") type = 1;
+            else if (item.name == "Plane(Clone)") type = 2;
+            else if (item.name == "EnemyAll(Clone)") type = 3;
             float a = item.transform.localPosition.x;
-            float b = item.transform.localPosition.y;
-            float c = item.transform.localPosition.z;
-            string str = type.ToString() + " " + a.ToString() + " " + b.ToString() + " " + c.ToString();
+            string str = type.ToString() + " " + a.ToString();
             if (type != -1)txt += str + "\n";
          }
         F.Write(txt);
