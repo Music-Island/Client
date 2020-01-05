@@ -18,7 +18,7 @@ public class Delete : MonoBehaviour
     }
     public void delete()
     {
-        sno1 = GameObject.FindGameObjectsWithTag("Block");
+        sno1 = GameObject.FindGameObjectsWithTag("Fire");
         foreach (GameObject item in sno1)
         {
             bool islook = item.GetComponent<InCamera>().isLook;

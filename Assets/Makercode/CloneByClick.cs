@@ -32,6 +32,7 @@ public class CloneByClick : MonoBehaviour
                     float c = GameObject.Find("Grid").transform.localPosition.z;
                     obj = Instantiate(prefab) as GameObject;
                     obj.transform.position = new Vector3(a + x, y, z);
+                    obj.GetComponent<InCamera>().clone = true;
                     timeSpend = 0.0f;
                 }
             }

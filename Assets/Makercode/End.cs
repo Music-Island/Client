@@ -6,8 +6,6 @@ using System.IO;
 
 public class End : MonoBehaviour
 {
-    GameObject[] sno1;
-    string txt;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +19,9 @@ public class End : MonoBehaviour
     }
     public void Button()
     {
+        GameObject[] sno1;
+        string txt = "";
         Text names = GameObject.Find("AudioPanel").GetComponent<AudioPlayer>().audioName;
-        StreamWriter F = new StreamWriter(names.text + ".txt");
         sno1 = GameObject.FindGameObjectsWithTag("Fire");
         foreach(GameObject item in sno1)
         {
@@ -34,6 +33,7 @@ public class End : MonoBehaviour
             string str = type.ToString() + " " + a.ToString();
             if (type != -1)txt += str + "\n";
          }
+        StreamWriter F = new StreamWriter(names.text + ".txt", false);
         F.Write(txt);
         F.Close();
     }
