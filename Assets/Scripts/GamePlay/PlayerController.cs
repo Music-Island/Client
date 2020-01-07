@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rbody;      //刚体
     private SpriteRenderer sprite;  //精灵体
     private Animator playerAnimator;//动画控制器
+    private AudioPlayer audio;
 
     public enum STATUS { RUN, ATTACK, JUMP, DOWN, DEAD }
     public STATUS kind = STATUS.RUN;   //行动状态(动画控制)
@@ -40,9 +41,35 @@ public class PlayerController : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         playerAnimator = GetComponent<Animator>();
+        audio = GameObject.Find("Panel").GetComponent<AudioPlayer>();
         rbody.MovePosition(new Vector2(defaultX, lowPositionY));
     }
+    public int getHP()
+    {
+        return HP;
+    }
 
+    public int getSC()
+    {
+        return SC;
+    }
+
+    public int getCombo()
+    {
+        return combo;
+    }
+
+    public void pause()
+    {
+        Time.timeScale = 0f;
+        audio.AudioPause();
+    }
+
+    public void play()
+    {
+        audio.AudioPlay();
+        Time.timeScale = 1;
+    }
     private void isPrefect()
     {
         HP = Mathf.Min(100, HP + 1);
